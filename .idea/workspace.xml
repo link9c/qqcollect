@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0845e22-b5d5-4cb2-9bf3-b8d155bb11cd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f0845e22-b5d5-4cb2-9bf3-b8d155bb11cd" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -198,6 +195,7 @@
       <workItem from="1587997529379" duration="1105000" />
       <workItem from="1588515412382" duration="1505000" />
       <workItem from="1591877296763" duration="699000" />
+      <workItem from="1591964464947" duration="10000" />
     </task>
     <servers />
   </component>
@@ -264,8 +262,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/someinterest$logger.coverage" NAME="logger Coverage Results" MODIFIED="1583506450214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/logger" />
-    <SUITE FILE_PATH="coverage/someinterest$saveGroupMessage.coverage" NAME="saveGroupMessage Coverage Results" MODIFIED="1588393801894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib/plugins" />
     <SUITE FILE_PATH="coverage/someinterest$crawler.coverage" NAME="crawler Coverage Results" MODIFIED="1583403296175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib/plugins/bilibilirank" />
     <SUITE FILE_PATH="coverage/someinterest$test.coverage" NAME="test Coverage Results" MODIFIED="1583403094861" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib/plugins" />
+    <SUITE FILE_PATH="coverage/someinterest$saveGroupMessage.coverage" NAME="saveGroupMessage Coverage Results" MODIFIED="1588393801894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib/plugins" />
   </component>
 </project>
