@@ -1,4 +1,4 @@
-import pymysql
+# import pymysql
 import aiomysql
 from secret import *
 
