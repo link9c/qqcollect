@@ -5,7 +5,6 @@ from .core import translated_get
 
 @on_command('翻译', aliases=('trans', 'f'), only_to_me=False, permission=permission.EVERYBODY)
 async def _translate(session: CommandSession):
-    # 从会话状态（session.state）中获取城市名称（city），如果当前不存在，则询问用户
     if session.ctx.get('preprocessed'):
         text = session.current_arg_text.strip()
         if text:
@@ -20,9 +19,4 @@ async def _translate(session: CommandSession):
             else:
                 back_text = await translated_get(text)
 
-
-            # print(back_text)
-            # 获取城市的天气预报
-
-            # 向用户发送天气预报
             await session.send(back_text.strip())
