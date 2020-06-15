@@ -7,6 +7,10 @@ from .core import translated_get
 async def _translate(session: CommandSession):
     if session.ctx.get('preprocessed'):
         text = session.current_arg_text.strip()
+        if "-help" in text:
+            back_text = "api:有道\n支持中英日韩法德俄西班牙葡萄牙意大利越南阿拉伯"
+            await session.send(back_text.strip())
+            return
         if text:
             _text = text.split(' ')
             if len(_text) > 1:

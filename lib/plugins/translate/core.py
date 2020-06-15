@@ -27,7 +27,7 @@ def generate_md5(string):
 
 
 def _split(from_to):
-    ruler = {'中': 'zh-CHS', '英': 'en', '日': 'ja'}
+    ruler = {'中': 'zh-CHS', '英': 'en', '日': 'ja','法':'fr','韩':'ko','德':'de','俄':'ru','西':'es','葡':'pt','意':'it','越':'vi','阿':'ar'}
 
     if len(from_to) == 2:
         x = ruler.get(from_to[0])
@@ -35,10 +35,10 @@ def _split(from_to):
         if all([x, y]):
             _fr, _to = x, y
         else:
-            _fr, _to = 'zh-CHS', 'en'
+            _fr, _to = 'auto', 'auto'
 
     else:
-        _fr, _to = 'zh-CHS', 'en'
+        _fr, _to = 'auto', 'auto'
 
     return _fr, _to
 
@@ -47,7 +47,7 @@ async def translated_get(word, from_to=None):
     if from_to:
         _fr, _to = _split(from_to)
     else:
-        _fr, _to = 'zh-CHS', 'en'
+        _fr, _to = 'auto', 'auto'
     # 两种版本的网址
     url = 'http://fanyi.youdao.com/translate_o?smartresult=dict&smartresult=rule'
     # url = 'http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule'
