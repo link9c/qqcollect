@@ -3,6 +3,7 @@ import os
 import nonebot
 import config
 
+
 if __name__ == '__main__':
     nonebot.init(config)
     nonebot.load_plugins(
@@ -10,6 +11,6 @@ if __name__ == '__main__':
         'lib.plugins'
     )
 
-    nonebot.run(host='127.0.0.1', port=8100)
+    nonebot.run(host='127.0.0.1', port=8080)
 
 
