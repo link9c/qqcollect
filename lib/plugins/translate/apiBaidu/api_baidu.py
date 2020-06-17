@@ -194,6 +194,92 @@ class BaiduCrack:
         return result
 
 
+class AsyncBaiduCrack:
+
+    def __init__(self):
+        self.try_time = 0
+        self._root_url = "https://fanyi.baidu.com/"
+        self._second_root_url = "https://fanyi.baidu.com/#zh/en/%E4%BD%A0%E5%A5%BD"
+        self._headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'}
+        self.cookies = []
+
+    async def _get_true_token_cookie(self):
+        async with aiohttp.ClientSession(headers=self._headers) as sess:
+            async with sess.get(url=self._root_url) as response:
+                if response.status == 200:
+                    # resp = await response.text()
+                    cookies = response.cookies.output()
+
+            async with sess.get(url=self._second_root_url) as response:
+                if response.status == 200:
+                    resp = await response.text()
+                    # cookies = response.cookies.output()
+
+        regx = re.findall('token: \'(.+)\'', resp)
+        token = regx[0] if regx != [] else None
+        regx = re.findall('window.gtk = \'(.+)\'', resp)
+        gtk = regx[0] if regx != [] else None
+
+        self.token = token
+        self.gtk = gtk
+        self.cookies = re.findall(r'BAIDUID=.+?:FG=1', cookies)
+
+    async def do_translate(self, query, f, t):
+        await self._get_true_token_cookie()
+        if self.cookies == []:
+            print("未获取到cookies")
+            return
+        else:
+            cookies = self.cookies[0]
+        url = "https://fanyi.baidu.com/v2transapi?from=%s&to=%s" % (f, t)
+        sign = Crack().e(query, self.gtk)
+        h = {"from": f, "to": t, "query": query, "simple_means_flag": 3, "sign": sign, "token": self.token,
+             "domain": "common"}
+
+        headers = {
+            'cookie': cookies,
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
+        }
+        proxy = ['223.247.94.239:4216', '223.241.2.91:4216', '36.59.120.182:4216', '139.196.52.1:8080',
+                 '223.243.5.147:4216', '222.186.55.41:8080', '116.22.48.220:4216']
+        r_prx = random.choice(proxy)
+        proxies = {
+            'http': 'http://' + r_prx,
+            'https': 'https://' + r_prx,
+        }
+        print(h)
+        print(headers)
+        # context = ssl._create_unverified_context()
+
+        async with aiohttp.ClientSession(headers=headers) as sess:
+            try:
+                async with sess.post(url=url, data=h) as response:
+                    print(response.status)
+                    if response.status == 200:
+                        resp = await response.text()
+
+            except Exception as e:
+                print("error", e)
+                return "代理错误"
+
+        data_dict = json.loads(resp)
+
+        # token或cookie失效时再次获取
+        if data_dict.get('errno') == 997 or data_dict.get('errno') == 998:
+            print("cookie或token获取错误")
+            return None
+
+        try:
+            result = data_dict["trans_result"]["data"][0]["dst"]
+            print(result)
+        except:
+            print("返回错误")
+            result = None
+
+        return result
+
+
 if __name__ == '__main__':
     # "531318.849991"
     # e("Ni")

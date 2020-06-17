@@ -3,10 +3,10 @@ import time
 from nonebot import on_command, permission, CommandSession
 
 from lib.plugins.translate.api_youdao import translated_get
-from .apiBaidu import BaiduCrack
+from .apiBaidu import BaiduCrack,AsyncBaiduCrack
 from .apiBaidu.lang import langMap
 
-baidu = BaiduCrack()
+baidu = AsyncBaiduCrack()
 
 
 @on_command('翻译', aliases=('trans', 'f'), only_to_me=False, permission=permission.EVERYBODY)
@@ -43,7 +43,7 @@ async def _translate(session: CommandSession):
                 if f in '中文(简体)':
                     f_simple = 'zh'
                 if t_simple:
-                    back_text = baidu.do_translate(word, f_simple, t_simple)
+                    back_text = await  baidu.do_translate(word, f_simple, t_simple)
                     if back_text:
                         await session.send("%s->%s : " % (f_simple, t_simple) + back_text.strip())
 
